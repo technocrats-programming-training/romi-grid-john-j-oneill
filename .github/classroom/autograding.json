@@ -1,0 +1,74 @@
+{
+  "tests": [
+    {
+      "name": "Compilation Test",
+      "setup": "chmod +x ./gradlew",
+      "run": "./gradlew build -x test",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "testInitialPositionCorrect",
+      "setup": "chmod +x ./gradlew",
+      "run": "./gradlew test --tests frc.robot.RobotTest.testInitialPositionCorrect",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "testPositionCorrectAfterUp",
+      "setup": "chmod +x ./gradlew",
+      "run": "./gradlew test --tests frc.robot.RobotTest.testPositionCorrectAfterUp",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "testPositionCorrectAfterRight",
+      "setup": "chmod +x ./gradlew",
+      "run": "./gradlew test --tests frc.robot.RobotTest.testPositionCorrectAfterRight",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "testPositionCorrectAfterDown",
+      "setup": "chmod +x ./gradlew",
+      "run": "./gradlew test --tests frc.robot.RobotTest.testPositionCorrectAfterDown",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "testPositionCorrectAfterLeft",
+      "setup": "chmod +x ./gradlew",
+      "run": "./gradlew test --tests frc.robot.RobotTest.testPositionCorrectAfterLeft",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "testPositionCorrectAfterSequenceRLRRLUDUU",
+      "setup": "chmod +x ./gradlew",
+      "run": "./gradlew test --tests frc.robot.RobotTest.testPositionCorrectAfterSequenceRLRRLUDUU",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    }
+  ]
+}
