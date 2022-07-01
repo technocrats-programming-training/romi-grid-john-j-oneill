@@ -13,6 +13,24 @@ public class Position {
     public void driveAngle(double targetYawDegrees, double driveDistanceInches) throws InterruptedException {
       double targetYawRadians = Math.toRadians(targetYawDegrees);
       double correctionYawDegrees = targetYawDegrees - positionYawDegrees;
+      if(correctionYawDegrees > 180.0)
+      {
+        correctionYawDegrees -= 360.0;
+      }
+      if(correctionYawDegrees < -180.0)
+      {
+        correctionYawDegrees += 360.0;
+      }
+      // if(correctionYawDegrees > 90.0)
+      // {
+      //   correctionYawDegrees -= 180.0;
+      //   driveDistanceInches *= -1;
+      // }
+      // else if(correctionYawDegrees < -90.0)
+      // {
+      //   correctionYawDegrees += 180.0;
+      //   driveDistanceInches *= -1;
+      // }
       turnDegrees(correctionYawDegrees);
       positionYawDegrees = targetYawDegrees;
       driveDistance(driveDistanceInches);
@@ -37,12 +55,13 @@ public class Position {
       driveAngle(180,distanceToDriveInches);
     }
 
-    public void returnToHome() {
-      //double angleToHome = Math.atan2(-y,-x);
-      //driveAngle(Math.toDegrees(angleToHome));
+    public void returnToHome() throws InterruptedException {
+      double angleToHome = Math.atan2(-positionInchesY,-positionInchesX);
+      double distanceToHome = Math.sqrt(positionInchesY * positionInchesY + positionInchesX * positionInchesX);
+      driveAngle(Math.toDegrees(angleToHome),distanceToHome);
     }
 
     public String toString() {
-        return positionInchesX + "," + positionInchesY;
+        return "(" + Math.round(positionInchesX) + ", " + Math.round(positionInchesY) + ")";
     }
 }
