@@ -14,27 +14,35 @@ public class Position {
       double correctionYawDegrees = targetYawDegrees - positionYawDegrees;
       if(correctionYawDegrees > 180.0)
       {
+        // Wrap to -pi to pi; this could be done with a modulo, but I dunno how
         correctionYawDegrees -= 360.0;
       }
       if(correctionYawDegrees < -180.0)
       {
+        // Wrap to -pi to pi; this could be done with a modulo, but I dunno how
         correctionYawDegrees += 360.0;
       }
       if(correctionYawDegrees > 90.0)
       {
+        // More efficient to back up: so rotate the opposite way and drive in reverse
         correctionYawDegrees -= 180.0;
         targetYawDegrees -= 180.0;
         driveDistanceInches *= -1.0;
       }
       else if(correctionYawDegrees < -90.0)
       {
+        // More efficient to back up: so rotate the opposite way and drive in reverse
         correctionYawDegrees += 180.0;
         targetYawDegrees += 180.0;
         driveDistanceInches *= -1.0;
       }
+      // Turn the robot
       turnDegrees(correctionYawDegrees);
+      // Update the odometery
       positionYawDegrees = targetYawDegrees;
+      // Drive the robot
       driveDistance(driveDistanceInches);
+      // Update the odometery
       final double targetYawRadians = Math.toRadians(targetYawDegrees);
       positionInchesY += Math.sin(targetYawRadians) * driveDistanceInches;
       positionInchesX += Math.cos(targetYawRadians) * driveDistanceInches;

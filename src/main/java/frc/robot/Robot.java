@@ -18,5 +18,39 @@ public class Robot extends ProceduralRobot {
   @Override
   public void autonomousProcedure() throws InterruptedException {
     
+    final int joystickID = 0;
+    final int joystickUp = 1;
+    final int joystickDown = 2;
+    final int joystickLeft = 3;
+    final int joystickRight = 4;
+    final int joystickHome = 5;
+    
+    Joystick joystick = new Joystick(joystickID);
+    Position position = new Position();
+    Scanner sc = new Scanner(System.in);
+    while (true) {
+      if(joystick.getRawButton(joystickUp)) {
+        // UP
+        position.driveUp();
+      } else if (joystick.getRawButton(joystickDown)) {
+        // Down
+        position.driveDown();
+      } else if (joystick.getRawButton(joystickLeft)) {
+        // Left
+        position.driveLeft();
+      } else if (joystick.getRawButton(joystickRight)) {
+        // Right
+        position.driveRight();
+      } else if (joystick.getRawButton(joystickHome)) {
+        // Home
+        break;
+      } else {
+        System.out.println("No Command Given");
+      }
+    }
+    System.out.println("Returning Home Now...");
+    position.returnToHome();
+    System.out.println("There's no place like 127.0.0.1!");
+
   }
 }
