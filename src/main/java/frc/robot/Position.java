@@ -56,9 +56,9 @@ public class Position {
     }
 
     public void returnToHome() throws InterruptedException {
-      double angleToHome = Math.atan2(-positionInchesY,-positionInchesX);
-      double distanceToHome = Math.sqrt(positionInchesY * positionInchesY + positionInchesX * positionInchesX);
-      driveAngle(Math.toDegrees(angleToHome),distanceToHome);
+      double angleToHomeRadians = Math.atan2(-positionInchesY,-positionInchesX);
+      double distanceToHomeInches = Math.sqrt(positionInchesY * positionInchesY + positionInchesX * positionInchesX);
+      driveAngle(Math.toDegrees(angleToHomeRadians),distanceToHomeInches);
     }
 
     public String toString() {
