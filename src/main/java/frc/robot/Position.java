@@ -11,7 +11,6 @@ public class Position {
     public double distanceToDriveInches = 10;
 
     public void driveAngle(double targetYawDegrees, double driveDistanceInches) throws InterruptedException {
-      double targetYawRadians = Math.toRadians(targetYawDegrees);
       double correctionYawDegrees = targetYawDegrees - positionYawDegrees;
       if(correctionYawDegrees > 180.0)
       {
@@ -21,19 +20,22 @@ public class Position {
       {
         correctionYawDegrees += 360.0;
       }
-      // if(correctionYawDegrees > 90.0)
-      // {
-      //   correctionYawDegrees -= 180.0;
-      //   driveDistanceInches *= -1;
-      // }
-      // else if(correctionYawDegrees < -90.0)
-      // {
-      //   correctionYawDegrees += 180.0;
-      //   driveDistanceInches *= -1;
-      // }
+      if(correctionYawDegrees > 90.0)
+      {
+        correctionYawDegrees -= 180.0;
+        targetYawDegrees -= 180.0;
+        driveDistanceInches *= -1.0;
+      }
+      else if(correctionYawDegrees < -90.0)
+      {
+        correctionYawDegrees += 180.0;
+        targetYawDegrees += 180.0;
+        driveDistanceInches *= -1.0;
+      }
       turnDegrees(correctionYawDegrees);
       positionYawDegrees = targetYawDegrees;
       driveDistance(driveDistanceInches);
+      final double targetYawRadians = Math.toRadians(targetYawDegrees);
       positionInchesY += Math.sin(targetYawRadians) * driveDistanceInches;
       positionInchesX += Math.cos(targetYawRadians) * driveDistanceInches;
       
