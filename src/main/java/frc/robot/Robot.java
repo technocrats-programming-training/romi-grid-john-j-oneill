@@ -17,7 +17,8 @@ import static lib.Romi.*;
 public class Robot extends ProceduralRobot {
   @Override
   public void autonomousProcedure() throws InterruptedException {
-    
+
+    // Predefine constants
     final int joystickID = 0;
     final int joystickUp = 1;
     final int joystickDown = 2;
