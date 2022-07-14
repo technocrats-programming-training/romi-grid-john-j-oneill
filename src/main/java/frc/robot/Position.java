@@ -11,18 +11,21 @@ public class Position {
     public double positionInchesY = 0;
     public double positionYawDegrees = 90;
     // Always drive in increments
-    public double distanceToDriveInches = 10;
+    public final double distanceToDriveInches = 10;
 
     public void driveAngle(double targetYawDegrees, double driveDistanceInches) throws InterruptedException {
+      // Relative angle to move to get to target yaw
       double correctionYawDegrees = targetYawDegrees - positionYawDegrees;
       if(correctionYawDegrees > 180.0)
       {
-        // Wrap to -pi to pi; this could be done with a modulo, but I dunno how
+        // Wrap to -pi to pi; this could be done with a
+        // modulo, but I don't want to mess with negatives
         correctionYawDegrees -= 360.0;
       }
       if(correctionYawDegrees < -180.0)
       {
-        // Wrap to -pi to pi; this could be done with a modulo, but I dunno how
+        // Wrap to -pi to pi; this could be done with a
+        // modulo, but I don't want to mess with negatives
         correctionYawDegrees += 360.0;
       }
       if(correctionYawDegrees > 90.0)
@@ -80,12 +83,16 @@ public class Position {
     }
 
     public void returnToHome() throws InterruptedException {
+      // Figure out the angle towards home
       double angleToHomeRadians = Math.atan2(-positionInchesY,-positionInchesX);
+      // Pythagorus is a steely-eyed missle man
       double distanceToHomeInches = Math.sqrt(positionInchesY * positionInchesY + positionInchesX * positionInchesX);
+      // Homeward bound!
       driveAngle(Math.toDegrees(angleToHomeRadians),distanceToHomeInches);
     }
 
     public String toString() {
-        return "(" + Math.round(positionInchesX) + ", " + Math.round(positionInchesY) + ")";
+      // Doesn't include yaw to satisfy the unit tests
+      return "(" + Math.round(positionInchesX) + ", " + Math.round(positionInchesY) + ")";
     }
 }

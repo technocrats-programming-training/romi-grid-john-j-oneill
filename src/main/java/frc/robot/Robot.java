@@ -31,7 +31,7 @@ public class Robot extends ProceduralRobot {
     Scanner sc = new Scanner(System.in);
     while (true) {
       if(joystick.getRawButton(joystickUp)) {
-        // UP
+        // Up
         position.driveUp();
       } else if (joystick.getRawButton(joystickDown)) {
         // Down
