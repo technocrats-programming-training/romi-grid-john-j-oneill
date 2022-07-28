@@ -49,9 +49,10 @@ public class Position {
         driveDistanceInches *= -1.0;
       }
       // Turn the robot
+      System.out.println("Turning " + correctionYawDegrees + "deg");
       turnDegrees(correctionYawDegrees);
       // Update the odometery
-      positionYawDegrees = targetYawDegrees;
+      positionYawDegrees += correctionYawDegrees;
       // Drive the robot
       driveDistance(driveDistanceInches);
       // Update the odometery
