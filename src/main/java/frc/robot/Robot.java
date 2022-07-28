@@ -17,23 +17,32 @@ import static lib.Romi.*;
 public class Robot extends ProceduralRobot {
   @Override
   public void autonomousProcedure() throws InterruptedException {
-    Joystick joystick = new Joystick(0);
+
+    // Predefine constants
+    final int joystickID = 0;
+    final int joystickUp = 1;
+    final int joystickDown = 2;
+    final int joystickLeft = 3;
+    final int joystickRight = 4;
+    final int joystickHome = 5;
+    
+    Joystick joystick = new Joystick(joystickID);
     Position position = new Position();
     Scanner sc = new Scanner(System.in);
-    for (int i = 0; i==-1; i++) {
-      if(joystick.getRawButton(1)) {
-        // UP
+    while (true) {
+      if(joystick.getRawButton(joystickUp)) {
+        // Up
         position.driveUp();
-      } else if (joystick.getRawButton(2)) {
+      } else if (joystick.getRawButton(joystickDown)) {
         // Down
         position.driveDown();
-      } else if (joystick.getRawButton(3)) {
+      } else if (joystick.getRawButton(joystickLeft)) {
         // Left
         position.driveLeft();
-      } else if (joystick.getRawButton(4)) {
+      } else if (joystick.getRawButton(joystickRight)) {
         // Right
         position.driveRight();
-      } else if (joystick.getRawButton(5)) { //H
+      } else if (joystick.getRawButton(joystickHome)) {
         // Home
         break;
       } else {
@@ -42,6 +51,7 @@ public class Robot extends ProceduralRobot {
     }
     System.out.println("Returning Home Now...");
     position.returnToHome();
+    System.out.println("There's no place like 127.0.0.1!");
 
   }
 }
